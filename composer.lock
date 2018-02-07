@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "78a90a7c2c773d11b145f268384cb5f6",
+    "content-hash": "8ba1bcecc3e574792c52afbed394d5da",
     "packages": [
         {
             "name": "pulyavin/streams",
@@ -40,6 +40,47 @@
             "description": "PHP wrapper for multi curl",
             "homepage": "https://github.com/pulyavin/streams",
             "time": "2015-09-10T13:30:50+00:00"
+        },
+        {
+            "name": "vyuldashev/xml-to-array",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vyuldashev/xml-to-array.git",
+                "reference": "147423caff4319f976a0a95a55a7088ae48d0d7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vyuldashev/xml-to-array/zipball/147423caff4319f976a0a95a55a7088ae48d0d7a",
+                "reference": "147423caff4319f976a0a95a55a7088ae48d0d7a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.1",
+                "phpunit/phpunit": "^6.4",
+                "spatie/array-to-xml": "^2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vyuldashev\\XmlToArray\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Yuldashev",
+                    "email": "misterio92@gmail.com"
+                }
+            ],
+            "description": "Convert xml to an array",
+            "time": "2017-10-12T21:39:31+00:00"
         }
     ],
     "packages-dev": [],

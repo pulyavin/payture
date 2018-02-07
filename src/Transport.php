@@ -27,28 +27,26 @@ class Transport implements TransportInterface
     }
 
     /**
-     * @param string $url
-     * @param string $merchant
-     * @param array $data
-     *
-     * @return array
-     *
-     * @throws PaytureException
+     * {@inheritdoc}
      */
     public function send(string $url, string $merchant, array $data): array
     {
-        $stream = new Stream($url);
+        try {
+            $stream = new Stream($url);
 
-        $stream->pushPost([
-            'VWID' => $merchant,
-            'DATA' => Helper::stringify($data)
-        ]);
+            $stream->pushPost([
+                'VWID' => $merchant,
+                'DATA' => Helper::stringify($data)
+            ]);
 
-        $stream->setOpt(CURLOPT_SSL_VERIFYPEER, false);
-        $stream->setOpt(CURLOPT_RETURNTRANSFER, true);
+            $stream->setOpt(CURLOPT_SSL_VERIFYPEER, false);
+            $stream->setOpt(CURLOPT_RETURNTRANSFER, true);
 
-        $response = $stream->exec();
+            $response = $stream->exec();
 
-        return $this->xmlConverter->convert($response);
+            return $this->xmlConverter->convert($response);
+        } catch (\Exception $e) {
+            throw new PaytureException($e->getMessage());
+        }
     }
 }
