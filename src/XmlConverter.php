@@ -2,16 +2,25 @@
 
 namespace pulyavin\Payture;
 
+use pulyavin\Payture\Exceptions\PaytureException;
+
 class XmlConverter implements XmlConverterInterface
 {
     /**
-     * @param string $xml
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function convert(string $xml): array
     {
-        return self::xmlToArray(simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA));
+        $parsed = self::xmlToArray(simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA));
+        $parsed = current($parsed);
+
+        if (empty($parsed['@Success']) || $parsed['@Success'] == false) {
+            $errorMessage = empty($parsed['@ErrCode']) ? "Error is undefined" : $parsed['@ErrCode'];
+
+            throw new PaytureException($errorMessage);
+        }
+
+        return $parsed;
     }
 
     /**
