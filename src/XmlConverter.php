@@ -31,7 +31,7 @@ class XmlConverter implements XmlConverterInterface
      *
      * @return array
      */
-    private function xmlToArray($xml, $options = array())
+    public static function xmlToArray($xml, $options = array())
     {
         $defaults = array(
             'namespaceSeparator' => ':',//you may want this to be something other than a colon
@@ -44,7 +44,12 @@ class XmlConverter implements XmlConverterInterface
             'keyReplace' => false       //replace values for above search values (as passed to str_replace())
         );
         $options = array_merge($defaults, $options);
-        $namespaces = $xml->getDocNamespaces();
+        try {
+            $namespaces = $xml->getDocNamespaces();
+        } catch (\Exception $e) {
+            // todo bad ass
+        }
+
         $namespaces[''] = null; //add base (empty) namespace
 
         //get attributes from all namespaces
