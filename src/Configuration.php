@@ -28,13 +28,13 @@ class Configuration
     /**
      * Configuration constructor.
      *
-     * @param string|null $addMerchant
-     * @param string|null $payMerchant
+     * @param string $addMerchant
+     * @param string $payMerchant
      * @param bool $isSandbox
      */
     public function __construct(
-        string $addMerchant = null,
-        string $payMerchant = null,
+        string $addMerchant,
+        string $payMerchant,
         bool $isSandbox = false
     )
     {
